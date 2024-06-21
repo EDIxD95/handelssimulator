@@ -16,11 +16,12 @@ public class Marktplatz {
 	}
 	
 	// Verkauf und Kauf von Produkte an/vom Marktplatz
-	public int verkauf(Produkt produkt) { // Lager wurde dem Konstruktor hinzugefuegt, ist das nötig?
-		return produkt.getWert();
+	public void verkaufen(String name, Lager lager) { // Lager wurde dem Konstruktor hinzugefuegt, ist das nötig?
+		Produkt produkt = lager.takeProdukt(name);
+		lager.addGold(produkt.getWert());
 	}
 	
-	public Produkt kauf(String name) {
+	public Produkt kaufen(String name) {
 		for (Produkt produkt : materialien) {				//
 			if (produkt.getName().equalsIgnoreCase(name)) {	// Überprüfung ob String name als Produkt existiert
 				return produkt;								// Und gibt es zurück wenn ja, ansonsten Null

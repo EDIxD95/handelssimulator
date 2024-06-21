@@ -27,6 +27,10 @@ public class Lager {
 		this.gold = gold;
 	}
 	
+	public void addGold(int gold) {
+		this.gold += gold;
+	}
+	
 	public int getAktuelleKapazitaet() {
 		int kapazitaet = 0;
 		for (Produkt p : inhalt) {
@@ -45,11 +49,13 @@ public class Lager {
 		}
 		inhalt.add(produkt);
 	}
-	public void takeProdukt(String name) {
+	public Produkt takeProdukt(String name) {
 		for (Produkt produkt : inhalt) {
 			if (produkt.getName().equalsIgnoreCase(name)) { // Überprüfung ob String name als Produkt existiert
 				inhalt.remove(produkt);						// Und nimmt es aus der Liste wenn ja
+				return produkt;
 			}
 		}
+		return null;
 	}
 }
