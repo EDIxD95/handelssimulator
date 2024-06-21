@@ -6,50 +6,50 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Produkt {
-	String Name;
-	int Wert;
-	String[] Material;
+	String name;
+	int wert;
+	String[] material;
 
 	int stueckzahl;
 	
-	private static ArrayList<Produkt> ProduktListe = new ArrayList<Produkt>();
+	private static ArrayList<Produkt> produktListe = new ArrayList<Produkt>();
 	
-	public Produkt(String Name, int Wert, String[] Material){
-		this.Name = Name;
-		this.Wert = Wert;
-		this.Material = Material;
+	public Produkt(String name, int wert, String[] material){
+		this.name = name;
+		this.wert = wert;
+		this.material = material;
 		this.stueckzahl = 1;
 	}
 	
-	public Produkt(String Name, int Wert){
-		this.Name = Name;
-		this.Wert = Wert;
-		this.Material = null;
+	public Produkt(String name, int wert){
+		this.name = name;
+		this.wert = wert;
+		this.material = null;
 		this.stueckzahl = 1;
 	}
 	
 	public String getName(){
-		return Name;
+		return name;
 	}
 	
-	public void setName(String Name) {
-		this.Name = Name;
+	public void setName(String name) {
+		this.name = name;
 	}
 	
 	public int getWert() {
-		return Wert;
+		return wert;
 	}
 	
-	public void setWert(int Wert) {
-		this.Wert = Wert;
+	public void setWert(int wert) {
+		this.wert = wert;
 	}
 
 	public String[] getMaterial() {
-		return Material;
+		return material;
 	}
 
-	public void setMaterial(String[] Material) {
-		this.Material = Material;
+	public void setMaterial(String[] material) {
+		this.material = material;
 	}
 	
 	public int getStueckzahl() {
@@ -65,7 +65,7 @@ public class Produkt {
 	}
 
 	public ArrayList<Produkt> getProduktListe() {
-		return ProduktListe;
+		return produktListe;
 	}
 	
 	public void loadProduktListe() {
@@ -76,18 +76,18 @@ public class Produkt {
             String line = br.readLine();
             while (line != null) {
                 String[] data = line.split(";");
-                String Name = data[0];
-                int Wert = Integer.parseInt(data[1]);
-                String[] Material = new String[data.length-2];
-                if (Material.length != 0) {
-                	for (int i = 2; i < Material.length; i++) {
-    					Material[i-2] = data[i];
+                String name = data[0];
+                int wert = Integer.parseInt(data[1]);
+                String[] material = new String[data.length-2];
+                if (material.length != 0) {
+                	for (int i = 2; i < material.length; i++) {
+    					material[i-2] = data[i];
     				}
-                    p = new Produkt(Name, Wert, Material);
-                    ProduktListe.add(p);
+                    p = new Produkt(name, wert, material);
+                    produktListe.add(p);
 				} else {
-					p = new Produkt(Name, Wert);
-                    ProduktListe.add(p);
+					p = new Produkt(name, wert);
+                    produktListe.add(p);
 				}
                 
             }
