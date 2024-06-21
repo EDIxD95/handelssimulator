@@ -48,7 +48,7 @@ public class Lager {
 	public void addProdukt(Produkt produkt) {
 		for (Produkt p : inhalt) {
 			if (p.getName().equalsIgnoreCase(produkt.getName())) {	// Überprüfung ob String name als Produkt existiert
-				p.setStueckzahl(p.getStueckzahl()+1);					// Und nimmt es aus der Liste wenn ja
+				p.setStueckzahl(p.getStueckzahl()+p.getStueckzahl());					// Und nimmt es aus der Liste wenn ja
 				return;
 			}
 		}

@@ -13,18 +13,25 @@ public class Produkt {
 	
 	public static ArrayList<Produkt> produktListe = new ArrayList<Produkt>();
 	
-	public Produkt(String name, int wert, String[] material){
+	public Produkt(String name, int wert, int stueckzahl, String[] material){
 		this.name = name;
 		this.wert = wert;
+		this.stueckzahl = stueckzahl;
 		this.material = material;
-		this.stueckzahl = 1;
+	}
+	
+	public Produkt(String name, int wert, int stueckzahl){
+		this.name = name;
+		this.wert = wert;
+		this.stueckzahl = stueckzahl;
+		this.material = null;
 	}
 	
 	public Produkt(String name, int wert){
 		this.name = name;
 		this.wert = wert;
-		this.material = null;
 		this.stueckzahl = 1;
+		this.material = null;
 	}
 	
 	public String getName(){
@@ -76,16 +83,17 @@ public class Produkt {
             while (line != null) {
                 String[] data = line.split(";");
                 String name = data[0];
-                int wert = Integer.parseInt(data[1]);
-                String[] material = new String[data.length-2];
+                int stueckzahl = Integer.parseInt(data[1]);
+                int wert = Integer.parseInt(data[2]);
+                String[] material = new String[data.length-3];
                 if (material.length != 0) {
-                	for (int i = 2; i < material.length; i++) {
-    					material[i-2] = data[i];
+                	for (int i = 3; i < material.length; i++) {
+    					material[i-3] = data[i];
     				}
-                    p = new Produkt(name, wert, material);
+                    p = new Produkt(name, wert, stueckzahl, material);
                     produktListe.add(p);
 				} else {
-					p = new Produkt(name, wert);
+					p = new Produkt(name, wert, stueckzahl);
                     produktListe.add(p);
 				}
                 
