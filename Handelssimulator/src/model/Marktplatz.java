@@ -1,5 +1,8 @@
 package model;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Marktplatz {
@@ -41,5 +44,22 @@ public class Marktplatz {
 		materialien.add(produkt);
 	}
 	
-	
+	public void loadMaterialien() {
+		String fileName = "Materialien.csv";
+        Produkt p = null;
+
+        try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
+            String line = br.readLine();
+            while (line != null) {
+                String[] data = line.split(";");
+                String Name = data[0];
+                int Wert = Integer.parseInt(data[1]);
+                p = new Produkt(Name, Wert);
+                materialien.add(p);
+                
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
