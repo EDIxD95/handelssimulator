@@ -27,6 +27,14 @@ public class Lager {
 		this.gold = gold;
 	}
 	
+	public int getAktuelleKapazitaet() {
+		int kapazitaet = 0;
+		for (Produkt p : inhalt) {
+			kapazitaet += p.getStueckzahl();
+		}
+		return kapazitaet;
+	}
+	
 	// Befehle
 	public void addProdukt(Produkt produkt) {
 		for (Produkt p : inhalt) {
