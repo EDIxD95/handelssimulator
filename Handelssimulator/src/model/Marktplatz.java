@@ -6,6 +6,7 @@ public class Marktplatz {
 	private int gold; // das Geld welches das Marktplatz für den Tag zur Verfügung hat?
 	private ArrayList<Produkt> materialien; // die Produkte die im Markt momentan verfügbar sind?
 
+	// Constructor
 	public Marktplatz(int gold) {
 		this.gold = gold;
 		materialien = new ArrayList<>();
@@ -19,7 +20,7 @@ public class Marktplatz {
 	public Produkt kauf(String name) {
 		for (Produkt produkt : materialien) {				//
 			if (produkt.getName().equalsIgnoreCase(name)) {	// Überprüfung ob String name als Produkt existiert
-				return produkt;								//
+				return produkt;								// Und gibt es zurück wenn ja, ansonsten Null
 			}
 		}
 		return null;
