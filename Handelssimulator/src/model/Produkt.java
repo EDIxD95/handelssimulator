@@ -10,7 +10,7 @@ public class Produkt {
 	int Wert;
 	String[] Material;
 	
-	int Stueckzahl = 1;
+	int stueckzahl = 1;
 	
 	private static ArrayList<Produkt> ProduktListe = new ArrayList<Produkt>();
 	
@@ -51,11 +51,15 @@ public class Produkt {
 	}
 	
 	public int getStueckzahl() {
-		return Stueckzahl;
+		return stueckzahl;
 	}
 
 	public void setStueckzahl(int stueckzahl) {
-		Stueckzahl = stueckzahl;
+		stueckzahl = stueckzahl;
+	}
+	
+	public void addStueckzahl(int stueckzahl) {
+		stueckzahl += stueckzahl;
 	}
 
 	public ArrayList<Produkt> getProduktListe() {
