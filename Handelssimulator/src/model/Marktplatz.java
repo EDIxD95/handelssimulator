@@ -36,13 +36,13 @@ public class Marktplatz {
 	public void setGold(int gold) {
 		this.gold = gold;
 	}
-	public ArrayList<Produkt> getMaterialien(){
-		return materialien;
+	
+	public void addGold(int gold) {
+		this.gold += gold;
 	}
 	
-	// Weitere Befehle?
-	public void addProdukt(Produkt produkt) { // Später in der Main: Marktplatz.addProdukt(eisenerz);?
-		materialien.add(produkt);
+	public ArrayList<Produkt> getMaterialien(){
+		return materialien;
 	}
 	
 	public ArrayList<Produkt> loadMaterialien() {
