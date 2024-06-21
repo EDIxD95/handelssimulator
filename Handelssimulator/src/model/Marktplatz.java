@@ -3,11 +3,17 @@ package model;
 import java.util.ArrayList;
 
 public class Marktplatz {
-    private static <String, Integer> lager();
+	private int gold; // das Geld welches das Marktplatz für den Tag zur Verfügung hat?
+	private ArrayList<Produkt> verfuegbarkeit; // die Produkte die im Markt momentan verfügbar sind?
 
-    public static void main(String[] args) {
-        lager.put("Gold", 100);
-        lager.put("Eisen", 200);
-        lager.put("Nahrung", 300);
-
-     
+	
+	
+	// getter & setter
+	public int getGold() {
+		return gold;
+	}
+	public void setGold(int gold) {
+		this.gold = gold;
+	}
+	
+}
