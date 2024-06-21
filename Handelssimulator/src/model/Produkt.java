@@ -11,6 +11,7 @@ public class Produkt {
 	String[] Material;
 	int Stueckzahl = 1;
 	
+	
 	private static ArrayList<Produkt> ProduktListe = new ArrayList<Produkt>();
 	
 	public Produkt(String Name, int Wert, String[] Material){
