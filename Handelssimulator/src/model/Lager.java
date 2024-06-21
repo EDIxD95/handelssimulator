@@ -5,10 +5,13 @@ import java.util.ArrayList;
 public class Lager {
 	private int maxKapazitaet;
 	private int gold;
-	
-	//ArrayList<Produkt> Lagerbestand = new ArrayList<Produkt>();
+	private ArrayList<Produkt> inhalt;
 
-	public Lager() {}
+	public Lager(int maxKapazitaet, int gold) {
+		this.maxKapazitaet = maxKapazitaet;
+		this.gold = gold;
+		inhalt = new ArrayList<>();
+	}
 	
 	public int getMaxKapazitaet() {
 		return maxKapazitaet;
@@ -22,6 +25,12 @@ public class Lager {
 	public void setGold(int gold) {
 		this.gold = gold;
 	}
-
+	
+	public void addProdukt(Produkt produkt) {
+		inhalt.add(produkt);
+	}
+	public void removeProdukt(Produkt produkt) {
+		inhalt.remove(produkt);
+	}
 	
 }
