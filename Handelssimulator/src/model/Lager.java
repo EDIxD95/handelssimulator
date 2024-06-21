@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class Lager {
 	private int maxKapazitaet;
 	private int gold;
+	//Test
 	private ArrayList<Produkt> inhalt = new ArrayList<Produkt>();
 
 	// Constructor
