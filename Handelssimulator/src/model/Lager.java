@@ -5,13 +5,12 @@ import java.util.ArrayList;
 public class Lager {
 	private int maxKapazitaet;
 	private int gold;
-	private ArrayList<Produkt> inhalt;
+	private ArrayList<Produkt> inhalt = new ArrayList<Produkt>();
 
 	// Constructor
 	public Lager(int maxKapazitaet, int gold) {
 		this.maxKapazitaet = maxKapazitaet;
 		this.gold = gold;
-		inhalt = new ArrayList<>();
 	}
 	
 	// getter & setter
@@ -30,6 +29,12 @@ public class Lager {
 	
 	// Befehle
 	public void addProdukt(Produkt produkt) {
+		for (Produkt p : inhalt) {
+			if (p.getName().equalsIgnoreCase(produkt.getName())) {	// Überprüfung ob String name als Produkt existiert
+				p.setStueckzahl(p.getStueckzahl()+1);					// Und nimmt es aus der Liste wenn ja
+				return;
+			}
+		}
 		inhalt.add(produkt);
 	}
 	public void takeProdukt(String name) {

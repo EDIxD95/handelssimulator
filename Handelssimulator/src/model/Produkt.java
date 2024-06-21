@@ -9,7 +9,7 @@ public class Produkt {
 	String Name;
 	int Wert;
 	String[] Material;
-	int Stückzahl;
+	int Stueckzahl = 1;
 	
 	private static ArrayList<Produkt> ProduktListe = new ArrayList<Produkt>();
 	
@@ -47,6 +47,14 @@ public class Produkt {
 
 	public void setMaterial(String[] Material) {
 		this.Material = Material;
+	}
+	
+	public int getStueckzahl() {
+		return Stueckzahl;
+	}
+
+	public void setStueckzahl(int stueckzahl) {
+		Stueckzahl = stueckzahl;
 	}
 
 	public ArrayList<Produkt> getProduktListe() {
