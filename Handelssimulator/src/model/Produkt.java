@@ -10,7 +10,7 @@ public class Produkt {
 	int Wert;
 	String[] Material;
 	int Stückzahl;
-	
+	//Test
 	private static ArrayList<Produkt> ProduktListe = new ArrayList<Produkt>();
 	
 	public Produkt(String Name, int Wert, String[] Material){
