@@ -13,8 +13,7 @@ public class Marktplatz {
 	}
 	
 	// Verkauf und Kauf von Produkte an/vom Marktplatz
-	public int verkauf(Produkt produkt, Lager lager) { // Lager wurde dem Konstruktor hinzugefuegt, ist das nötig?
-		lager.removeProdukt(produkt);
+	public int verkauf(Produkt produkt) { // Lager wurde dem Konstruktor hinzugefuegt, ist das nötig?
 		return produkt.Wert;
 	}
 	public Produkt kauf(String name) {
