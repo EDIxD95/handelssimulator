@@ -9,8 +9,8 @@ public class Produkt {
 	String Name;
 	int Wert;
 	String[] Material;
-	
-	int stueckzahl = 1;
+
+	int stueckzahl;
 	
 	private static ArrayList<Produkt> ProduktListe = new ArrayList<Produkt>();
 	
@@ -18,12 +18,14 @@ public class Produkt {
 		this.Name = Name;
 		this.Wert = Wert;
 		this.Material = Material;
+		this.stueckzahl = 1;
 	}
 	
 	public Produkt(String Name, int Wert){
 		this.Name = Name;
 		this.Wert = Wert;
 		this.Material = null;
+		this.stueckzahl = 1;
 	}
 	
 	public String getName(){
@@ -55,11 +57,11 @@ public class Produkt {
 	}
 
 	public void setStueckzahl(int stueckzahl) {
-		stueckzahl = stueckzahl;
+		this.stueckzahl = stueckzahl;
 	}
 	
 	public void addStueckzahl(int stueckzahl) {
-		stueckzahl += stueckzahl;
+		this.stueckzahl += stueckzahl;
 	}
 
 	public ArrayList<Produkt> getProduktListe() {
