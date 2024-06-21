@@ -12,13 +12,14 @@ public class Marktplatz {
 	// Constructor
 	public Marktplatz(int gold) {
 		this.gold = gold;
-		materialien = new ArrayList<>();
+		materialien = loadMaterialien();
 	}
 	
 	// Verkauf und Kauf von Produkte an/vom Marktplatz
 	public int verkauf(Produkt produkt) { // Lager wurde dem Konstruktor hinzugefuegt, ist das nötig?
 		return produkt.Wert;
 	}
+	
 	public Produkt kauf(String name) {
 		for (Produkt produkt : materialien) {				//
 			if (produkt.getName().equalsIgnoreCase(name)) {	// Überprüfung ob String name als Produkt existiert
@@ -44,8 +45,9 @@ public class Marktplatz {
 		materialien.add(produkt);
 	}
 	
-	public void loadMaterialien() {
+	public ArrayList<Produkt> loadMaterialien() {
 		String fileName = "Materialien.csv";
+		ArrayList<Produkt> m = new ArrayList<Produkt>();
         Produkt p = null;
 
         try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
@@ -55,11 +57,12 @@ public class Marktplatz {
                 String Name = data[0];
                 int Wert = Integer.parseInt(data[1]);
                 p = new Produkt(Name, Wert);
-                materialien.add(p);
+                m.add(p);
                 
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return m;
     }
 }
