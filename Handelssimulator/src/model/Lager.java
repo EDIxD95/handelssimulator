@@ -7,12 +7,14 @@ public class Lager {
 	private int gold;
 	private ArrayList<Produkt> inhalt;
 
+	// Constructor
 	public Lager(int maxKapazitaet, int gold) {
 		this.maxKapazitaet = maxKapazitaet;
 		this.gold = gold;
 		inhalt = new ArrayList<>();
 	}
 	
+	// getter & setter
 	public int getMaxKapazitaet() {
 		return maxKapazitaet;
 	}
@@ -26,11 +28,15 @@ public class Lager {
 		this.gold = gold;
 	}
 	
+	// Befehle
 	public void addProdukt(Produkt produkt) {
 		inhalt.add(produkt);
 	}
-	public void removeProdukt(Produkt produkt) {
-		inhalt.remove(produkt);
+	public void takeProdukt(String name) {
+		for (Produkt produkt : inhalt) {
+			if (produkt.getName().equalsIgnoreCase(name)) { // Überprüfung ob String name als Produkt existiert
+				inhalt.remove(produkt);						// Und nimmt es aus der Liste wenn ja
+			}
+		}
 	}
-	
 }
