@@ -6,6 +6,7 @@ public class Lager {
 	private int maxKapazitaet;
 	private int gold;
 	private ArrayList<Produkt> inhalt = new ArrayList<Produkt>();
+	// Leeres Kommentar
 
 	// Constructor
 	public Lager(int maxKapazitaet, int gold) {
