@@ -54,9 +54,9 @@ public class Marktplatz {
             String line = br.readLine();
             while (line != null) {
                 String[] data = line.split(";");
-                String Name = data[0];
-                int Wert = Integer.parseInt(data[1]);
-                p = new Produkt(Name, Wert);
+                String name = data[0];
+                int wert = Integer.parseInt(data[1]);
+                p = new Produkt(name, wert);
                 m.add(p);
                 
             }
