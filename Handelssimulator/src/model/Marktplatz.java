@@ -16,18 +16,24 @@ public class Marktplatz {
 	}
 	
 	// Verkauf und Kauf von Produkte an/vom Marktplatz
-	public void verkaufen(String name, Lager lager) { // Lager wurde dem Konstruktor hinzugefuegt, ist das nötig?
+	public boolean verkaufen(String name, Lager lager) { // Lager wurde dem Konstruktor hinzugefuegt, ist das nötig?
 		Produkt produkt = lager.takeProdukt(name);
-		lager.addGold(produkt.getWert());
+		if (produkt != null && gold > produkt.getWert()) {
+			gold -= produkt.getWert();
+			lager.addGold(takeGold(produkt.getWert()));
+			return true;
+		}
+		return false;
 	}
 	
-	public Produkt kaufen(String name) {
+	public boolean kaufen(String name, Lager lager) {
 		for (Produkt produkt : materialien) {				//
-			if (produkt.getName().equalsIgnoreCase(name)) {	// Überprüfung ob String name als Produkt existiert
-				return produkt;								// Und gibt es zurück wenn ja, ansonsten Null
+			if (produkt.getName().equalsIgnoreCase(name) && lager.getGold() > produkt.getWert()) {	// Überprüfung ob String name als Produkt existiert und genug gold vorhanden ist
+				addGold(lager.takeGold(produkt.getWert()));
+				return true;
 			}
 		}
-		return null;
+		return false;
 	}
 	
 	// getter & setter
@@ -40,6 +46,11 @@ public class Marktplatz {
 	
 	public void addGold(int gold) {
 		this.gold += gold;
+	}
+	
+	public int takeGold(int gold) {
+		this.gold += gold;
+		return gold;
 	}
 	
 	public ArrayList<Produkt> getMaterialien(){

@@ -31,6 +31,11 @@ public class Lager {
 		this.gold += gold;
 	}
 	
+	public int takeGold(int gold) {
+		this.gold -= gold;
+		return gold;
+	}
+	
 	public int getAktuelleKapazitaet() {
 		int kapazitaet = 0;
 		for (Produkt p : inhalt) {

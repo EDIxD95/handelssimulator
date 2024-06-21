@@ -94,4 +94,8 @@ public class Produkt {
             e.printStackTrace();
         }
     }
+	
+	public void herstellen(String name, Lager lager) {
+		
+	}
 }
