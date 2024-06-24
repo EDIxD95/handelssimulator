@@ -74,10 +74,6 @@ public class Produkt {
 		return produktListe;
 	}
 	
-	public Produkt getProdukt(String name) {
-		
-	}
-	
 	public void loadProduktListe() {
 		String fileName = "Produkt.csv";
         Produkt p = null;
@@ -107,8 +103,37 @@ public class Produkt {
         }
     }
 	
-	public void herstellen(String name, Lager lager) {
-		Produkt p = getProdukt(name);
-		lager.addProdukt(p);
+
+		
 	}
+    
+
+  public void herstellen(String name, Lager lager) {
+        
+    	Produkt produkt = getProdukt(name);
+        if (produkt != null) {
+            int produktionsKosten = produkt.getWert();
+            int stueckzahl = produkt.getStueckzahl();
+            if (lager.getGold() >= produktionsKosten) {
+                if (lager.getAktuelleKapazitaet() + stueckzahl <= lager.getMaxKapazitaet()) {
+                    lager.takeGold(produktionsKosten);
+                    lager.addProdukt(new Produkt(produkt.getName(), produkt.getWert(), produkt.getStueckzahl(), produkt.getMaterial()));
+                } else {
+                    System.out.println("Nicht genug Kapazität im Lager.");
+                }
+            } else {
+                System.out.println("Nicht genug Gold vorhanden.");
+            }
+        } else {
+            System.out.println("Produkt nicht in der Produktliste gefunden.");
+        }
+    }
+
+private Produkt getProdukt(String name) {
+	
+	return null;
+}	
+
+
 }
+ 
