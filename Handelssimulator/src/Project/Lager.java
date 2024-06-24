@@ -1,4 +1,4 @@
-package model;
+package Project;
 
 import java.util.ArrayList;
 
@@ -42,6 +42,14 @@ public class Lager {
 			kapazitaet += p.getStueckzahl();
 		}
 		return kapazitaet;
+	}
+	
+	public ArrayList<Produkt> getInhalt(){
+		return inhalt;
+	}
+	
+	public Produkt getProdukt(int i) {
+		return inhalt.get(i);
 	}
 	
 	// Befehle

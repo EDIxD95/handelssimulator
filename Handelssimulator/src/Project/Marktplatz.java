@@ -1,4 +1,4 @@
-package model;
+package Project;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -67,7 +67,7 @@ public class Marktplatz {
 	}
 	
 	public ArrayList<Produkt> loadMaterialien() {
-		String fileName = "Materialien.csv";
+		String fileName = "src\\Project\\Materialien.csv";
 		ArrayList<Produkt> m = new ArrayList<Produkt>();
         Produkt p = null;
 
@@ -79,7 +79,7 @@ public class Marktplatz {
                 int wert = Integer.parseInt(data[1]);
                 p = new Produkt(name, wert);
                 m.add(p);
-                
+                line = br.readLine();
             }
         } catch (IOException e) {
             e.printStackTrace();

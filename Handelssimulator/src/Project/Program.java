@@ -1,4 +1,4 @@
-package model;
+package Project;
 
 import java.util.Scanner;
 
@@ -8,11 +8,12 @@ public class Program {
 		Lager lager = new Lager(100, 1000);
 		Produkt.loadProduktListe();
 		System.out.println("Handelssimulator..");
-		
+		Menue(marktplatz, lager);
 	}
 	
-	public void Menue(Marktplatz m, Lager l) {
+	public static void Menue(Marktplatz m, Lager l) {
 		String auswahl;
+		System.out.println("Menü!");
 		System.out.println("Was wollen Sie tun?:");
 		System.out.println("Herstellung: H");
 		System.out.println("Lager: L");
@@ -21,7 +22,7 @@ public class Program {
 		auswahl = benutzereingabe().toUpperCase();
 		switch (auswahl) {
 		case "H":
-			herstellung();
+			herstellung(m, l);
 			break;
 		case "L":
 			lager(m, l);
@@ -39,20 +40,24 @@ public class Program {
 		}
 	}
 	
-	public String benutzereingabe() {
+	public static String benutzereingabe() {
 		Scanner scanner = new Scanner(System.in);
 		String eingabe = scanner.nextLine();
 		scanner.close();
 		return eingabe;
 	}
 	
-	public void herstellung() {
+	public static void herstellung(Marktplatz m, Lager l) {
+		String auswahl;
+		System.out.println("Willkommen im Herstellungsmenü!");
 		System.out.println("Welches Produkt möchtest du Herstellen?:");
-		
-		
+		Produkt.listProduktListe();
+		auswahl = benutzereingabe();
+		Produkt p = Produkt.produktListe.get(Integer.parseInt(auswahl)-1);
+		Produkt.herstellen(p.getName(), l);
 	}
 	
-	public void marktplatz(Marktplatz m, Lager l) {
+	public static void marktplatz(Marktplatz m, Lager l) {
 		String auswahl;
 		System.out.println("Willkommen auf dem Marktplatz!");
 		System.out.println("Möchtest du Kaufen oder Verkaufen:");
@@ -78,7 +83,7 @@ public class Program {
 			System.out.println("Was möchtest du verkaufen:");
 			l.listInhalt();
 			auswahl = benutzereingabe();
-			p = m.getMaterialien().get(Integer.parseInt(auswahl)-1);
+			p = l.getProdukt(Integer.parseInt(auswahl)-1);
 			boolean verkauft;
 			verkauft = m.verkaufen(p.getName(), l);
 			if (verkauft) {
@@ -94,7 +99,7 @@ public class Program {
 		
 	}
 	
-	public void lager(Marktplatz m, Lager l) {
+	public static void lager(Marktplatz m, Lager l) {
 		System.out.println("Willkommen im Lager!");
 		System.out.println("Du hast folgende Produkte im Lager ("+l.getAktuelleKapazitaet()+"/"+l.getMaxKapazitaet()+"):");
 		l.listInhalt();

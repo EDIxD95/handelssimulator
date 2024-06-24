@@ -1,4 +1,4 @@
-package model;
+package Project;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -69,13 +69,18 @@ public class Produkt {
 	public void addStueckzahl(int stueckzahl) {
 		this.stueckzahl += stueckzahl;
 	}
-
-	public ArrayList<Produkt> getProduktListe() {
-		return produktListe;
+	
+	public static void listProduktListe() {
+		ArrayList<Produkt> pl = produktListe;
+		System.out.println("Auswahl\tProduktname\tWert");
+		for (int i = 0; i < pl.size(); i++) {
+			Produkt p = pl.get(i);
+			System.out.println((i+1)+".\t"+p.getName()+"\t"+p.getWert());
+		}
 	}
 	
 	public static void loadProduktListe() {
-		String fileName = "ProduktListe.csv";
+		String fileName = "src\\Project\\ProduktListe.csv";
         Produkt p = null;
 
         try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
@@ -96,17 +101,24 @@ public class Produkt {
 					p = new Produkt(name, wert, stueckzahl);
                     produktListe.add(p);
 				}
-                
+                line = br.readLine();
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    
 
-	public void herstellen(String name, Lager lager) { // "Mehl",lager1
-        
-    	Produkt produkt = getProdukt(name);
+	public static Produkt getProdukt(String name) {
+	    for (Produkt p : produktListe) {
+	        if (p.getName().equals(name)) {
+	            return p;
+	        }
+	    }
+	    return null;
+	}
+    
+	public static void herstellen(String name, Lager lager) { // "Mehl",lager1
+        Produkt produkt = getProdukt(name);
         if (produkt != null) {
             String fehlerMeldung = "";
             if (lager.getAktuelleKapazitaet() + produkt.getStueckzahl() - produkt.getMaterial().length <= lager.getMaxKapazitaet()) {
@@ -127,15 +139,6 @@ public class Produkt {
             System.out.println("Produkt nicht in der Produktliste gefunden.");
         }
     }
-
-	public static Produkt getProdukt(String name) {
-	    for (Produkt p : produktListe) {
-	        if (p.getName().equals(name)) {
-	            return p;
-	        }
-	    }
-	    return null;
-	}
 
 
 }
