@@ -63,4 +63,12 @@ public class Lager {
 		}
 		return null;
 	}
+	
+	public void listInhalt() {
+		System.out.println("Auswahl\tProduktname\tWert\tStückzahl");
+		for (int i = 0; i < inhalt.size(); i++) {
+			Produkt p = inhalt.get(i);
+			System.out.println((i+1)+".\t"+p.getName()+"\t"+p.getWert()+"\t"+p.getStueckzahl());
+		}
+	}
 }
