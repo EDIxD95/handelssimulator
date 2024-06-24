@@ -7,7 +7,7 @@ public class Program {
 		Marktplatz marktplatz = new Marktplatz(1000);
 		Lager lager = new Lager(100, 1000);
 		Produkt.loadProduktListe();
-		System.out.println(Handelssimulator..);
+		System.out.println("Handelssimulator..");
 		
 	}
 	
@@ -24,5 +24,32 @@ public class Program {
 		String eingabe = scanner.nextLine();
 		scanner.close();
 		return eingabe;
+	}
+	
+	public void herstellung() {
+		System.out.println("Welches Produkt möchtest du Herstellen?:");
+		
+	}
+	
+	public void marktplatz() {
+		String auswahl;
+		System.out.println("Willkommen auf dem Marktplatz!");
+		System.out.println("Möchtest du Kaufen oder Verkaufen:");
+		System.out.println("Kaufen: K");
+		System.out.println("Verkaufen: V");
+		auswahl = benutzereingabe().toUpperCase();
+		switch (auswahl) {
+		case "M": {
+			
+			yield type;
+		}
+		default:
+			throw new IllegalArgumentException("Unexpected value: " + auswahl);
+		}
+		
+	}
+	
+	public void lager() {
+		
 	}
 }
