@@ -11,7 +11,7 @@ public class Program {
 		
 	}
 	
-	public void Menue() {
+	public void Menue(Marktplatz m, Lager l) {
 		String auswahl;
 		System.out.println("Was wollen Sie tun?:");
 		System.out.println("Herstellung: H");
@@ -21,17 +21,20 @@ public class Program {
 		auswahl = benutzereingabe().toUpperCase();
 		switch (auswahl) {
 		case "H":
-			
+			herstellung();
 			break;
 		case "L":
-			
+			lager(m, l);
 			break;
 		case "M":
+			marktplatz(m, l);
+			break;
+		case "B":
 			
 			break;
 		default:
 			System.out.println("Falsche Auswahl!");
-			Menue();
+			Menue(m, l);
 			break;
 		}
 	}
@@ -45,6 +48,7 @@ public class Program {
 	
 	public void herstellung() {
 		System.out.println("Welches Produkt möchtest du Herstellen?:");
+		
 		
 	}
 	
@@ -90,7 +94,9 @@ public class Program {
 		
 	}
 	
-	public void lager() {
-		
+	public void lager(Marktplatz m, Lager l) {
+		System.out.println("Willkommen im Lager!");
+		System.out.println("Du hast folgende Produkte im Lager ("+l.getAktuelleKapazitaet()+"/"+l.getMaxKapazitaet()+"):");
+		l.listInhalt();
 	}
 }
