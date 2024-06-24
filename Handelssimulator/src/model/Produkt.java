@@ -102,13 +102,9 @@ public class Produkt {
             e.printStackTrace();
         }
     }
-	
-
-		
-	}
     
 
-  public void herstellen(String name, Lager lager) {
+	public void herstellen(String name, Lager lager) {
         
     	Produkt produkt = getProdukt(name);
         if (produkt != null) {
@@ -129,10 +125,10 @@ public class Produkt {
         }
     }
 
-private Produkt getProdukt(String name) {
-	
-	return null;
-}	
+	private Produkt getProdukt(String name) {
+		
+		return null;
+	}	
 
 
 }
