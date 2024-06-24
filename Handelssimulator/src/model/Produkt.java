@@ -108,7 +108,7 @@ public class Produkt {
     }
 	
 	public void herstellen(String name, Lager lager) {
-		Produkt p = getProdukt();
+		Produkt p = getProdukt(name);
 		lager.addProdukt(p);
 	}
 }
