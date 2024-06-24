@@ -74,7 +74,7 @@ public class Produkt {
 		return produktListe;
 	}
 	
-	public Produkt getProdukt() {
+	public Produkt getProdukt(String name) {
 		
 	}
 	
