@@ -57,6 +57,15 @@ public class Marktplatz {
 		return materialien;
 	}
 	
+	public void listMaterialien() {
+		ArrayList<Produkt> m = getMaterialien();
+		System.out.println("Auswahl\tProduktname\tWert");
+		for (int i = 0; i < m.size(); i++) {
+			Produkt p = m.get(i);
+			System.out.println((i+1)+".\t"+p.getName()+"\t"+p.getWert());
+		}
+	}
+	
 	public ArrayList<Produkt> loadMaterialien() {
 		String fileName = "Materialien.csv";
 		ArrayList<Produkt> m = new ArrayList<Produkt>();
