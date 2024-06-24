@@ -74,7 +74,7 @@ public class Produkt {
 		return produktListe;
 	}
 	
-	public void loadProduktListe() {
+	public static void loadProduktListe() {
 		String fileName = "Produkt.csv";
         Produkt p = null;
 
@@ -108,12 +108,11 @@ public class Produkt {
         
     	Produkt produkt = getProdukt(name);
         if (produkt != null) {
-            int produktionsKosten = produkt.getWert();
             int stueckzahl = produkt.getStueckzahl();
             if (lager.getGold() >= produktionsKosten) {
                 if (lager.getAktuelleKapazitaet() + stueckzahl <= lager.getMaxKapazitaet()) {
-                    lager.takeGold(produktionsKosten);
-                    lager.addProdukt(new Produkt(produkt.getName(), produkt.getWert(), produkt.getStueckzahl(), produkt.getMaterial()));
+                	
+                	lager.addProdukt(produkt));
                 } else {
                     System.out.println("Nicht genug Kapazität im Lager.");
                 }
@@ -125,10 +124,14 @@ public class Produkt {
         }
     }
 
-	private Produkt getProdukt(String name) {
-		
-		return null;
-	}	
+	public static Produkt getProdukt(String name) {
+	    for (Produkt p : produktListe) {
+	        if (p.getName().equals(name)) {
+	            return p;
+	        }
+	    }
+	    return null;
+	}
 
 
 }
