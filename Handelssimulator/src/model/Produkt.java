@@ -104,20 +104,24 @@ public class Produkt {
     }
     
 
-	public void herstellen(String name, Lager lager) {
+	public void herstellen(String name, Lager lager) { // "Mehl",lager1
         
     	Produkt produkt = getProdukt(name);
         if (produkt != null) {
-            int stueckzahl = produkt.getStueckzahl();
-            if (lager.getGold() >= produktionsKosten) {
-                if (lager.getAktuelleKapazitaet() + stueckzahl <= lager.getMaxKapazitaet()) {
-                	
-                	lager.addProdukt(produkt));
-                } else {
-                    System.out.println("Nicht genug Kapazität im Lager.");
-                }
+            String fehlerMeldung = "";
+            if (lager.getAktuelleKapazitaet() + produkt.getStueckzahl() - produkt.getMaterial().length <= lager.getMaxKapazitaet()) {
+            	for (int i = 0;i < produkt.getMaterial().length; i++) { // Hier wird überprüft ob jedes Material vorhanden ist + wird gleich abgezogen
+            		if (lager.takeProdukt(produkt.getMaterial()[i]) != null) {
+            			fehlerMeldung = fehlerMeldung + produkt.getMaterial()[i] + " fehlt."; // hier wird
+            			}
+            		if (fehlerMeldung == "") {
+                    	lager.addProdukt(produkt);
+                    	System.out.println("Produkt wurde hergestellt.");
+                    	}
+            	}
+            
             } else {
-                System.out.println("Nicht genug Gold vorhanden.");
+            	System.out.println("Nicht genug Kapazität im Lager.");
             }
         } else {
             System.out.println("Produkt nicht in der Produktliste gefunden.");
