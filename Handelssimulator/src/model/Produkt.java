@@ -74,6 +74,10 @@ public class Produkt {
 		return produktListe;
 	}
 	
+	public Produkt getProdukt() {
+		
+	}
+	
 	public void loadProduktListe() {
 		String fileName = "Produkt.csv";
         Produkt p = null;
@@ -104,6 +108,7 @@ public class Produkt {
     }
 	
 	public void herstellen(String name, Lager lager) {
-		
+		Produkt p = getProdukt();
+		lager.addProdukt(p);
 	}
 }
