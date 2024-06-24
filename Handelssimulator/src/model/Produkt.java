@@ -75,7 +75,7 @@ public class Produkt {
 	}
 	
 	public static void loadProduktListe() {
-		String fileName = "Produkt.csv";
+		String fileName = "ProduktListe.csv";
         Produkt p = null;
 
         try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
