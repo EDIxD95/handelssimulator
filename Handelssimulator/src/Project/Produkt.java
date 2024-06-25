@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Produkt {
 	private String name;
@@ -53,6 +54,10 @@ public class Produkt {
 	public String[] getMaterial() {
 		return material;
 	}
+	
+	public String getMaterial(int i) {
+		return material[i];
+	}
 
 	public void setMaterial(String[] material) {
 		this.material = material;
@@ -70,12 +75,20 @@ public class Produkt {
 		this.stueckzahl += stueckzahl;
 	}
 	
+	public void takeStueckzahl(int stueckzahl) {
+		this.stueckzahl -= stueckzahl;
+	}
+	
 	public static void listProduktListe() {
 		ArrayList<Produkt> pl = produktListe;
-		System.out.println("Auswahl\tProduktname\tWert");
+		System.out.println("Auswahl\tProduktname\tWert\tMaterialien");
 		for (int i = 0; i < pl.size(); i++) {
 			Produkt p = pl.get(i);
-			System.out.println((i+1)+".\t"+p.getName()+"\t"+p.getWert());
+			System.out.print((i+1)+".\t"+p.getName()+"\t"+p.getWert());
+			for (int j = 0; j < p.getMaterial().length; j++) {
+				System.out.print("\t"+p.getMaterial(j));
+			}
+			System.out.print("\n");
 		}
 	}
 	
@@ -92,8 +105,8 @@ public class Produkt {
                 int wert = Integer.parseInt(data[2]);
                 String[] material = new String[data.length-3];
                 if (material.length != 0) {
-                	for (int i = 3; i < material.length; i++) {
-    					material[i-3] = data[i];
+                	for (int i = 0; i < material.length; i++) {
+    					material[i] = data[i+3];
     				}
                     p = new Produkt(name, wert, stueckzahl, material);
                     produktListe.add(p);
@@ -110,7 +123,7 @@ public class Produkt {
 
 	public static Produkt getProdukt(String name) {
 	    for (Produkt p : produktListe) {
-	        if (p.getName().equals(name)) {
+	        if (p.getName().equalsIgnoreCase(name)) {
 	            return p;
 	        }
 	    }
@@ -122,15 +135,24 @@ public class Produkt {
         if (produkt != null) {
             String fehlerMeldung = "";
             if (lager.getAktuelleKapazitaet() + produkt.getStueckzahl() - produkt.getMaterial().length <= lager.getMaxKapazitaet()) {
+            	ArrayList<Produkt> material = new ArrayList<Produkt>();
             	for (int i = 0;i < produkt.getMaterial().length; i++) { // Hier wird überprüft ob jedes Material vorhanden ist + wird gleich abgezogen
-            		if (lager.takeProdukt(produkt.getMaterial()[i]) != null) {
-            			fehlerMeldung = fehlerMeldung + produkt.getMaterial()[i] + " fehlt."; // hier wird
-            			}
-            		if (fehlerMeldung == "") {
-                    	lager.addProdukt(produkt);
-                    	System.out.println("Produkt wurde hergestellt.");
-                    	}
+            		Produkt m = lager.takeProdukt(produkt.getMaterial(i));
+            		if (m == null) {
+            			fehlerMeldung = fehlerMeldung + produkt.getMaterial(i) + " fehlt."; // hier wird
+            		} else {
+            			material.add(m);
+					}
             	}
+            	if (fehlerMeldung == "") {
+                	lager.addProdukt(produkt);
+                	System.out.println("Produkt wurde hergestellt.");
+                } else {
+                	for (Produkt p : material) {
+                		lager.addProdukt(p);
+                	}
+					System.out.println(fehlerMeldung);
+				}
             
             } else {
             	System.out.println("Nicht genug Kapazität im Lager.");

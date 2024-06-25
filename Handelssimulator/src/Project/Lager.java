@@ -52,6 +52,15 @@ public class Lager {
 		return inhalt.get(i);
 	}
 	
+	public Produkt getProdukt(String name) {
+		for (Produkt p : inhalt) {
+			if (p.getName().equalsIgnoreCase(p.getName())) {	// Überprüfung ob String name als Produkt existiert
+				return p;
+			}
+		}
+		return null;
+	}
+	
 	// Befehle
 	public void addProdukt(Produkt produkt) {
 		for (Produkt p : inhalt) {
@@ -65,7 +74,11 @@ public class Lager {
 	public Produkt takeProdukt(String name) {
 		for (Produkt produkt : inhalt) {
 			if (produkt.getName().equalsIgnoreCase(name)) { // Überprüfung ob String name als Produkt existiert
-				inhalt.remove(produkt);						// Und nimmt es aus der Liste wenn ja
+				if (produkt.getStueckzahl() > 1) {
+					produkt.takeStueckzahl(1);
+				} else {
+					inhalt.remove(produkt);
+				}						// Und nimmt es aus der Liste wenn ja
 				return produkt;
 			}
 		}

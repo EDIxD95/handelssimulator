@@ -43,7 +43,6 @@ public class Program {
 	public static String benutzereingabe() {
 		Scanner scanner = new Scanner(System.in);
 		String eingabe = scanner.nextLine();
-		scanner.close();
 		return eingabe;
 	}
 	
