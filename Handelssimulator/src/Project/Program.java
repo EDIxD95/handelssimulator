@@ -1,5 +1,6 @@
 package Project;
 
+import java.util.Iterator;
 import java.util.Scanner;
 
 public class Program {
@@ -8,10 +9,10 @@ public class Program {
 		Lager lager = new Lager(100, 1000);
 		Produkt.loadProduktListe();
 		System.out.println("Handelssimulator..");
-		Menue(marktplatz, lager);
+		menue(marktplatz, lager);
 	}
 	
-	public static void Menue(Marktplatz m, Lager l) {
+	public static void menue(Marktplatz m, Lager l) {
 		String auswahl;
 		System.out.println("Menü!");
 		System.out.println("Was wollen Sie tun?:");
@@ -31,29 +32,76 @@ public class Program {
 			marktplatz(m, l);
 			break;
 		case "B":
-			
+			System.out.println("Handelssimulation beendet!");
 			break;
 		default:
 			System.out.println("Falsche Auswahl!");
-			Menue(m, l);
+			menue(m, l);
 			break;
 		}
 	}
 	
 	public static String benutzereingabe() {
 		Scanner scanner = new Scanner(System.in);
-		String eingabe = scanner.nextLine();
+		return scanner.nextLine();
+	}
+	
+	public static String benutzereingabe(String regExString) {
+		Scanner scanner = new Scanner(System.in);
+		String eingabe;
+		boolean loop = false;
+		do {
+			if (loop == true) {
+				System.out.println("Falsche Eingabe!");
+			}
+			eingabe = scanner.nextLine();
+			if (!eingabe.matches(regExString)) {
+				loop = true;
+			}
+		} while (loop);
 		return eingabe;
 	}
 	
 	public static void herstellung(Marktplatz m, Lager l) {
 		String auswahl;
+		boolean loop = true;
+		boolean loopEingabe = false;
 		System.out.println("Willkommen im Herstellungsmenü!");
-		System.out.println("Welches Produkt möchtest du Herstellen?:");
-		Produkt.listProduktListe();
-		auswahl = benutzereingabe();
-		Produkt p = Produkt.produktListe.get(Integer.parseInt(auswahl)-1);
-		Produkt.herstellen(p.getName(), l);
+		do {
+			System.out.println("Welches Produkt möchtest du Herstellen?:");
+			Produkt.listProduktListe();
+			String items = "^(";
+			for (int i = 1; i <= Produkt.produktListe.size(); i++) {
+				if (i != 1) {
+					items += "|";
+				}
+				items += i;
+			 }
+			items += ")$";
+			System.out.println(items);
+			auswahl = benutzereingabe(items);
+			Produkt p = Produkt.produktListe.get(Integer.parseInt(auswahl)-1);
+			Produkt.herstellen(p.getName(), l);
+			do {
+				System.out.print("Möchtest du ein weiteres Produkt herstellen? J/N:");
+				auswahl = benutzereingabe().toUpperCase();
+				switch (auswahl) {
+				case "J":
+					loop = true;
+					loopEingabe = false;
+					break;
+				case "N":
+					loop = false;
+					loopEingabe = false;
+					break;
+				default:
+					System.out.println("Falsche Eingabe!");
+					loopEingabe = true;
+					break;
+				}
+			} while (loopEingabe);
+		} while (loop);
+		menue(m,l);
 	}
 	
 	public static void marktplatz(Marktplatz m, Lager l) {
@@ -95,7 +143,7 @@ public class Program {
 			System.out.println("Falsche Auswahl!");
 			marktplatz(m, l);
 		}
-		
+		menue(m,l);
 	}
 	
 	public static void lager(Marktplatz m, Lager l) {
