@@ -150,5 +150,9 @@ public class Program {
 		System.out.println("Willkommen im Lager!");
 		System.out.println("Du hast folgende Produkte im Lager ("+l.getAktuelleKapazitaet()+"/"+l.getMaxKapazitaet()+"):");
 		l.listInhalt();
+		String auswahl;
+		System.out.println("Zurück zum Menü: Beliebige Taste");
+		auswahl = benutzereingabe();
+		menue(m,l);
 	}
 }
