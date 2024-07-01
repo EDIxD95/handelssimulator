@@ -78,7 +78,6 @@ public class Program {
 				items += i;
 			 }
 			items += ")$";
-			System.out.println(items);
 			auswahl = benutzereingabe(items);
 			Produkt p = Produkt.produktListe.get(Integer.parseInt(auswahl)-1);
 			Produkt.herstellen(p.getName(), l);
